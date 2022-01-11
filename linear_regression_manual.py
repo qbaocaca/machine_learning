@@ -29,8 +29,6 @@ X_test_np= np.reshape(X_test_np, (133,1))
 model = LinearRegression(learning_rate=0.01, n_iters=20000)
 model.fit(X_train_np, y_train_np)
 
-X_test_np = np.reshape(X_test_np, (1, 133))
-
 predictions = model.predict(X_test_np)
 print(f'MSE: {mean_squared_error(y_test_np, predictions)}')
 
