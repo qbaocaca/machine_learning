@@ -10,6 +10,7 @@ class Perceptron:
 
         self.weights = None
         self.bias = None
+        self.costs = []
 
     def fit(self, X, y):
         n_samples ,n_features = X.shape
@@ -20,14 +21,18 @@ class Perceptron:
         y_ = np.array([1 if i>0 else 0 for i in y]) # in case y is -1 or 1
 
         for epoch in range(self.n_iters):
+            n_wronglabels = 0
             for idx, x_i in enumerate(X):
                 linear_output = np.dot(x_i, self.weights) + self.bias
                 y_pred = self.activation_func(linear_output)
 
-                update = self.lr * (y_[idx] - y_pred)
+                error = y_[idx] - y_pred
+                update = self.lr * (error)
                 self.weights += update*x_i
                 self.bias+= update
+                n_wronglabels += int(error!= 0.0)
 
+            self.costs.append(n_wronglabels)
             if (epoch+1)%100 == 0:
                 print(f'epoch: {epoch+1}, weights = {self.weights}, bias = {self.bias}')
 
