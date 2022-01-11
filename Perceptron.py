@@ -17,11 +17,11 @@ class Perceptron:
         self.weights = np.zeros(n_features)
         self.bias = 0
 
-        y_ = np.array([1 if i>0 else 0 for i in y])
+        y_ = np.array([1 if i>0 else 0 for i in y]) # in case y is -1 or 1
 
         for _ in range(self.n_iters):
             for idx, x_i in enumerate(X):
-                linear_output = x_i.dot(self.weights) + self.bias
+                linear_output = np.dot(self.weights, x_i) + self.bias
                 y_pred = self.activation_func(linear_output)
 
                 update = self.lr * (y_[idx] - y_pred)
@@ -32,7 +32,7 @@ class Perceptron:
                     print(f'weights = {self.weights}, bias = {self.bias}')
 
     def predict(self, X):
-        linear_output = X.dot(self.weights) + self.bias
+        linear_output = np.dot(self.weights, X) + self.bias
         return self.activation_func(linear_output)
 
 

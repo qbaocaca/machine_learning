@@ -28,8 +28,13 @@ X_test_np=X_test.to_numpy()
 y_train_np= y_train.to_numpy()
 y_test_np=y_test.to_numpy()
 
+# if not to_numpy,
+# RuntimeError: X_train is in Series, not numpy
+
 X_train_np= np.reshape(X_train_np, (309,1))
 X_test_np= np.reshape(X_test_np, (133,1))
+# if not reshape,
+# RuntimeError: mat1 and mat2 shapes cannot be multiplied (1x309 and 1x1)
 
 X_train = torch.from_numpy(X_train_np.astype(np.float32))
 X_test = torch.from_numpy(X_test_np.astype(np.float32))
