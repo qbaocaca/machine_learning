@@ -19,20 +19,20 @@ class Perceptron:
 
         y_ = np.array([1 if i>0 else 0 for i in y]) # in case y is -1 or 1
 
-        for _ in range(self.n_iters):
+        for epoch in range(self.n_iters):
             for idx, x_i in enumerate(X):
-                linear_output = np.dot(self.weights, x_i) + self.bias
+                linear_output = np.dot(x_i, self.weights) + self.bias
                 y_pred = self.activation_func(linear_output)
 
                 update = self.lr * (y_[idx] - y_pred)
                 self.weights += update*x_i
                 self.bias+= update
 
-                if idx%10 == 0:
-                    print(f'weights = {self.weights}, bias = {self.bias}')
+            if (epoch+1)%100 == 0:
+                print(f'epoch: {epoch+1}, weights = {self.weights}, bias = {self.bias}')
 
     def predict(self, X):
-        linear_output = np.dot(self.weights, X) + self.bias
+        linear_output = np.dot(X, self.weights) + self.bias
         return self.activation_func(linear_output)
 
 

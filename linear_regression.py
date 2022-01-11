@@ -17,7 +17,7 @@ class LinearRegression:
 
         for epoch in range(self.n_iters):
             for idx, x_i in enumerate(X):
-                y_predicted = np.dot(self.weights, x_i) + self.bias
+                y_predicted = np.dot(x_i, self.weights) + self.bias
                 error = y_predicted - y[idx]
                 dw=(2/n_samples) * np.sum(x_i * error)
                 db=(2/n_samples) * np.sum(error)
@@ -32,7 +32,7 @@ class LinearRegression:
 
 
     def predict(self, X):
-        return np.dot(self.weights, X) + self.bias
+        return np.dot(X, self.weights) + self.bias
 
 def mean_squared_error(y_true, y_pred):
     error = y_pred - y_true
