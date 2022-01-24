@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from linear_regression import LinearRegression, mean_squared_error
 
 diabetes = datasets.load_diabetes()
 df=pd.DataFrame(data=diabetes.data, columns=diabetes.feature_names)
@@ -26,20 +25,24 @@ y_test_np=y_test.to_numpy()
 X_train_np= np.reshape(X_train_np, (X_train.shape[0],1))
 X_test_np= np.reshape(X_test_np, (X_test_np.shape[0],1))
 
-model = LinearRegression(learning_rate=0.01, n_iters=20000)
-model.fit(X_train_np, y_train_np)
+x0 = np.ones(X_train_np.shape[0])
+x0 = x0.reshape(x0.shape[0], 1)
 
-predictions = model.predict(X_test_np)
-print(f'MSE: {mean_squared_error(y_test_np, predictions)}')
+X_final = np.concatenate([X_train_np, x0], axis=1)
 
-plt.figure(figsize=(10,7))
-plt.scatter(X_test_np, y_test_np, c='steelblue', edgecolor='white', s=70)
-plt.plot(X_test_np, predictions, 'r')
-plt.show()
+w = np.dot(np.linalg.pinv(X_final), y_train_np)
 
-plt.figure(figsize=(10,7))
-plt.plot(range(1, len(model.costs) + 1), model.costs)
-plt.xlabel('Epochs')
-plt.ylabel('Cost')
-plt.title('Gradient Descent')
+fig, ax = plt.subplots()
+
+plt.title('Diabetes predictions')
+plt.xlabel('bmi in std')
+plt.ylabel('Score')
+
+ax.scatter(X_train_np, y_train_np)
+
+x_min, x_max = ax.get_xlim()
+y_min, y_max = w[1]*x_min + w[0], w[1]*x_max + w[0]
+
+ax.set_xlim([x_min, x_max])
+_ = ax.plot([x_min, x_max], [y_min, y_max])
 plt.show()

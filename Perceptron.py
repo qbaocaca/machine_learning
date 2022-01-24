@@ -15,7 +15,9 @@ class Perceptron:
     def fit(self, X, y):
         n_samples ,n_features = X.shape
 
-        self.weights = np.zeros(n_features)
+        # self.weights = np.zeros(n_features)
+        # self.weights = pseudo_inverse(X, y)
+        self.weights = np.dot(np.linalg.pinv(X), y)
         self.bias = 0
 
         y_ = np.array([1 if i>0 else 0 for i in y]) # in case y is -1 or 1
@@ -43,3 +45,10 @@ class Perceptron:
 
     def unit_step_func(self, X):
         return np.where(X>=0, 1, 0)
+
+# shouldn't be right!
+# def pseudo_inverse (X, y):
+#     temp = np.dot(X, X.T)
+#     temp2 = np.linalg.inv(temp)
+#     temp3 = np.dot(temp2, X)
+#     return np.dot(y, temp3)

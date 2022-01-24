@@ -13,6 +13,7 @@ class LinearRegression:
 
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
+        # self.weights = pseudo_inverse (X, y)
         self.bias = 0
 
         for epoch in range(self.n_iters):
@@ -37,3 +38,12 @@ class LinearRegression:
 def mean_squared_error(y_true, y_pred):
     error = y_pred - y_true
     return (error**2).sum() / len(y_true)
+
+# shouldn't be right!
+# def pseudo_inverse (X, y):
+#     temp = np.dot(X, X.T)
+#     temp = np.array(temp)
+#     temp = temp.reshape((1,1))
+#     temp2 = np.linalg.inv(temp)
+#     temp3 = np.dot(temp2, X)
+#     return np.dot(y, temp3)

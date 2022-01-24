@@ -27,8 +27,8 @@ X_test_np=X_test.to_numpy()
 y_train_np= y_train.to_numpy()
 y_test_np=y_test.to_numpy()
 
-X_train_np= np.reshape(X_train_np, (309,1))
-X_test_np= np.reshape(X_test_np, (133,1))
+X_train_np= np.reshape(X_train_np, (X_train_np.shape[0], 1))
+X_test_np= np.reshape(X_test_np, (X_test_np.shape[0], 1))
 
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
