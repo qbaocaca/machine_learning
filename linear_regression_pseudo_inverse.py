@@ -28,9 +28,11 @@ X_test_np= np.reshape(X_test_np, (X_test_np.shape[0],1))
 x0 = np.ones(X_train_np.shape[0])
 x0 = x0.reshape(x0.shape[0], 1)
 
-X_final = np.concatenate([X_train_np, x0], axis=1)
+X_final = np.concatenate([x0, X_train_np], axis=1)
 
-w = np.dot(np.linalg.pinv(X_final), y_train_np)
+A = np.dot(X_final.T, X_final)
+b = np.dot(X_final.T, y_train_np)
+w = np.dot(np.linalg.pinv(A), b)
 
 fig, ax = plt.subplots()
 

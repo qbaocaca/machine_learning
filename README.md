@@ -14,4 +14,4 @@
 
 ## Linear regression with pseudo_inverse
 
-![image3](images/lr_pseudo.PNG)
+![image3](images/correct.PNG)
