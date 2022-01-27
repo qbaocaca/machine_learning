@@ -26,7 +26,7 @@ class LinearRegression:
                 self.bias -= self.lr * db
 
                 cost = (error**2).sum() / n_samples
-                self.costs.append(cost)
+            self.costs.append(cost)
 
             if (epoch+1)%1000==0:
                 print(f'epoch: {epoch+1}, weights = {self.weights}, bias = {self.bias}, cost = {cost}')

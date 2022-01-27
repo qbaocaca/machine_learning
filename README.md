@@ -15,3 +15,7 @@
 ## Linear regression with pseudo_inverse
 
 ![image3](images/correct.PNG)
+
+## Cost of stochastic gradient descent and mini batch gradient descent
+
+![image4](images/fluctuate_cost.PNG)

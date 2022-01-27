@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from linear_regression import LinearRegression, mean_squared_error
 from lr_sgd import lr_SGD
+from mini_batch_gd import mini_batch_gradient_descend
 
 diabetes = datasets.load_diabetes()
 df=pd.DataFrame(data=diabetes.data, columns=diabetes.feature_names)
@@ -27,8 +28,9 @@ y_test_np=y_test.to_numpy()
 X_train_np= np.reshape(X_train_np, (X_train.shape[0],1))
 X_test_np= np.reshape(X_test_np, (X_test_np.shape[0],1))
 
-# model = LinearRegression(learning_rate=0.01, n_iters=20000)
-model = lr_SGD(learning_rate=0.01, n_iters=50000)
+model = LinearRegression(learning_rate=0.01, n_iters=100)
+# model = lr_SGD(learning_rate=0.01, n_iters=20000)
+# model = mini_batch_gradient_descend(learning_rate=0.01, n_iters=10)
 model.fit(X_train_np, y_train_np)
 
 predictions = model.predict(X_test_np)

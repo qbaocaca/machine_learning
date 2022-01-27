@@ -74,7 +74,7 @@ plt.title('Diabetes predictions')
 plt.xlabel('bmi in std')
 plt.ylabel('Score')
 
-ax.scatter(X, y)
+ax.scatter(X_train_np, y_train_np)
 
 x_min, x_max = ax.get_xlim()
 y_min, y_max = w*x_min + b, w*x_max + b
