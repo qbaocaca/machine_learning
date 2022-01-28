@@ -20,7 +20,7 @@ class lr_SGD(LinearRegression):
             y_predicted = np.dot(x_i, self.weights) + self.bias
             error = y_predicted - y_i
 
-            dw=(2/n_samples) * np.sum(x_i * error)
+            dw=(2/n_samples) * np.dot(x_i.T, error)
             db=(2/n_samples) * np.sum(error)
             self.weights -= self.lr * dw
             self.bias -= self.lr * db

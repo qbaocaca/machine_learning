@@ -8,6 +8,7 @@ from Perceptron import Perceptron
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 import seaborn as sns
 from matplotlib.colors import ListedColormap
+from perceptron_sgd import perceptron_SGD
 
 df= pd.read_csv("C:/Users/DELL/OneDrive/Desktop/caltech_course/machine_learning/fish_classification.csv")
 
@@ -36,11 +37,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 # plt.legend(loc='upper left')
 # plt.show()
 
-model=Perceptron(learning_rate=0.01, n_iters=1000)
+# model=Perceptron(learning_rate=0.01, n_iters=1000)
+model = perceptron_SGD(learning_rate=0.01, n_iters=1000)
 model.fit(X_train, y_train)
 
-y_pred=model.predict(X_test)
-print(classification_report(y_test, y_pred))
+# y_pred=model.predict(X_test)
+# print(classification_report(y_test, y_pred))
 
 # Confusion matrix
 # cm = confusion_matrix(y_test, y_pred)
@@ -61,31 +63,31 @@ print(classification_report(y_test, y_pred))
 
 
 # plot_decision_boundary
-plt.figure(figsize=(10,7))
-markers = ('s', 'x', 'o', '^', 'v')
-colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
-cmap = ListedColormap(colors[:len(np.unique(y))])
+# plt.figure(figsize=(10,7))
+# markers = ('s', 'x', 'o', '^', 'v')
+# colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
+# cmap = ListedColormap(colors[:len(np.unique(y))])
 
-x1_min, x1_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-x2_min, x2_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, 0.02),
-                        np.arange(x2_min, x2_max, 0.02))
-Z = model.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
-Z = Z.reshape(xx1.shape)
-plt.contourf(xx1, xx2, Z, alpha=0.3, cmap=cmap)
-plt.xlim(xx1.min(), xx1.max())
-plt.ylim(xx2.min(), xx2.max())
+# x1_min, x1_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+# x2_min, x2_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+# xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, 0.02),
+#                         np.arange(x2_min, x2_max, 0.02))
+# Z = model.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
+# Z = Z.reshape(xx1.shape)
+# plt.contourf(xx1, xx2, Z, alpha=0.3, cmap=cmap)
+# plt.xlim(xx1.min(), xx1.max())
+# plt.ylim(xx2.min(), xx2.max())
 
-for idx, cl in enumerate(np.unique(y_train)):
-      plt.scatter(x=X[y == cl, 0],
-                  y=X[y == cl, 1],
-                  alpha=0.8,
-                  c=colors[idx],
-                  marker=markers[idx],
-                  label=cl,
-                  edgecolor='black')
+# for idx, cl in enumerate(np.unique(y_train)):
+#       plt.scatter(x=X[y == cl, 0],
+#                   y=X[y == cl, 1],
+#                   alpha=0.8,
+#                   c=colors[idx],
+#                   marker=markers[idx],
+#                   label=cl,
+#                   edgecolor='black')
 
-plt.xlabel('Height')
-plt.ylabel('Width')
-plt.legend(loc='upper left')
-plt.show()
+# plt.xlabel('Height')
+# plt.ylabel('Width')
+# plt.legend(loc='upper left')
+# plt.show()
