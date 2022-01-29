@@ -19,3 +19,11 @@
 ## Cost of stochastic gradient descent and mini batch gradient descent
 
 ![image4](images/fluctuate_cost.PNG)
+
+## Cost of gradient descent
+
+![image6](images/costgd.PNG)
+
+## Linear regression on 1D data
+
+![image5](images/logis1d.PNG)
