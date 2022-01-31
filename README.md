@@ -24,6 +24,10 @@
 
 ![image6](images/costgd.PNG)
 
-## Linear regression on 1D data
+## Logistic regression on 1D data
 
 ![image5](images/logis1d.PNG)
+
+## Logistic regression on 2D data
+
+![image6](images/logis2d.PNG)
