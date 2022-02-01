@@ -20,13 +20,16 @@ class lr_SGD(LinearRegression):
             y_predicted = np.dot(x_i, self.weights) + self.bias
             error = y_predicted - y_i
 
-            dw=(2/n_samples) * np.dot(x_i.T, error)
-            db=(2/n_samples) * np.sum(error)
+            dw= x_i * error
+            db= error
             self.weights -= self.lr * dw
             self.bias -= self.lr * db
 
-            cost = (error**2).sum() / n_samples
+            cost = error**2
             self.costs.append(cost)
 
             if (epoch+1)%1000==0:
-                print(f'epoch: {epoch+1}, weights = {self.weights}, bias = {self.bias}, cost = {cost}')
+                print(f'epoch: {epoch+1}, '
+                f'weights = {self.weights[0]}, '
+                f'bias = {self.bias}, '
+                f'cost = {cost}')
