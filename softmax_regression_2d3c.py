@@ -2,6 +2,8 @@ import numpy as np
 from logistic_regression import create_data, visualize_data
 from softmax_regression import SoftmaxRegression
 from logistic_regression import visualize_cost, accuracy
+from softmax_regression import compute_loss
+from softmax_sgd import softmax_SGD
 
 X1 = create_data(20, -1, 2, 1, 3, 0, 1)
 X2 = create_data(20, 4, 6, -4, -1, 1, 2)
@@ -17,24 +19,27 @@ X = np.delete(X, slice(2, 3), 1)
 
 # visualize_data(X, y)
 
-model = SoftmaxRegression(learning_rate=0.1, n_iters=1000, num_classes=3)
+# model = SoftmaxRegression(learning_rate=0.1, n_iters=1000, num_classes=3)
+model = softmax_SGD(learning_rate=0.01, n_iters =0, num_classes=3)
 model.fit(X, y)
 
-# visualize_cost(model)
+visualize_cost(model)
 
-X1_test = create_data(15, -1, 2, 1, 3, 0, 1)
-X2_test = create_data(15, 4, 6, -4, -1, 1, 2)
-X3_test = create_data(15, -5, -3, -2.5, -0.5, 2, 3)
+print(f'Average loss: {compute_loss(X, y, model)}')
 
-X_test = np.concatenate((X1_test, X2_test, X3_test))
-np.random.shuffle(X_test)
+# X1_test = create_data(15, -1, 2, 1, 3, 0, 1)
+# X2_test = create_data(15, 4, 6, -4, -1, 1, 2)
+# X3_test = create_data(15, -5, -3, -2.5, -0.5, 2, 3)
 
-y_test = X_test[:, 2]
-y_test = np.array([int(i) for i in y_test])
+# X_test = np.concatenate((X1_test, X2_test, X3_test))
+# np.random.shuffle(X_test)
 
-X_test = np.delete(X_test, slice(2, 3), 1)
+# y_test = X_test[:, 2]
+# y_test = np.array([int(i) for i in y_test])
 
-visualize_data(X_test, y_test)
+# X_test = np.delete(X_test, slice(2, 3), 1)
 
-y_pred = model.predict(X_test)
-print(f'Test accuracy: {accuracy(y_test, y_pred)* 100}%')
+# visualize_data(X_test, y_test)
+
+# y_pred = model.predict(X_test)
+# print(f'Test accuracy: {accuracy(y_test, y_pred)* 100:.2f}%')

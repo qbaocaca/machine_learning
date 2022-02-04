@@ -29,8 +29,8 @@ X_train_np= np.reshape(X_train_np, (X_train.shape[0],1))
 X_test_np= np.reshape(X_test_np, (X_test_np.shape[0],1))
 
 # model = LinearRegression(learning_rate=0.01, n_iters=10000)
-# model = lr_SGD(learning_rate=0.01, n_iters=10000)
-model = mini_batch_gradient_descend(learning_rate=0.01, n_iters=10000, batch_size=20)
+model = lr_SGD(learning_rate=0.01, n_iters=0)
+# model = mini_batch_gradient_descend(learning_rate=0.01, n_iters=10000, batch_size=20)
 model.fit(X_train_np, y_train_np)
 
 predictions = model.predict(X_test_np)

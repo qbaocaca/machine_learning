@@ -18,7 +18,7 @@
 
 ## Cost of stochastic gradient descent and mini batch gradient descent
 
-![image4](images/fluctuate_cost.PNG)
+![image4](images/costsgd.PNG)
 
 ## Cost of gradient descent
 
@@ -35,3 +35,7 @@
 ## Softmax regression on 2D data
 
 ![image7](images/softmax.PNG)
+
+## Softmax regression on 2D data
+
+![image8](images/heatmap.PNG)

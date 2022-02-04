@@ -11,11 +11,11 @@ class lr_SGD(LinearRegression):
         self.weights = np.zeros(n_features)
         self.bias = 0
 
-        for epoch in range(self.n_iters):
-            id = np.random.permutation(n_samples)
-            id_rd = np.random.randint(0, n_samples-1)
-            x_i = X[id[id_rd], :]
-            y_i = y[id[id_rd]]
+        id = np.random.permutation(n_samples)
+
+        for epoch in range(n_samples):
+            x_i = X[id[epoch], :]
+            y_i = y[id[epoch]]
 
             y_predicted = np.dot(x_i, self.weights) + self.bias
             error = y_predicted - y_i
@@ -28,8 +28,7 @@ class lr_SGD(LinearRegression):
             cost = error**2
             self.costs.append(cost)
 
-            if (epoch+1)%1000==0:
-                print(f'epoch: {epoch+1}, '
-                f'weights = {self.weights[0]}, '
-                f'bias = {self.bias}, '
-                f'cost = {cost}')
+            print(f'epoch: {epoch+1}, '
+            f'weights = {self.weights[0]}, '
+            f'bias = {self.bias}, '
+            f'cost = {cost}')

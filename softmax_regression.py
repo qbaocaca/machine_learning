@@ -112,3 +112,16 @@ class SoftmaxRegression(Perceptron):
             else:
                 w[i][0] = -y[i][0] / a[i][0]
         return w
+
+def compute_loss(X, y, model):
+    total_loss = 0.0
+    n_samples, n_features = X.shape
+    Y = np.eye(model.num_classes)[y]
+    for idx, x_i in enumerate(X):
+        x_i = X[idx, :].reshape((n_features, 1))
+        y_i = Y[idx, :].reshape((model.num_classes, 1))
+        linear_product = model.get_linear_product(x_i)
+        loss = model.compute_loss_stable(y_i, linear_product)
+        total_loss += loss
+
+    return (1.0/n_samples) * total_loss
