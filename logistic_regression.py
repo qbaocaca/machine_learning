@@ -94,7 +94,8 @@ def create_data(num, xx, xy, yx, yy, c1, c2):
     return np.array(X)
 
 def visualize_data (X, y):
-    colormap = np.array(['r', 'b'])
+    # colormap = np.array(['r', 'c'])
+    colormap = np.array(['m', 'c', 'y'])
     # plt.ylim(bottom=-0.1, top=1.1)
     plt.scatter(X[:, 0], X[:, 1], c=colormap[y])
     plt.show()

@@ -31,3 +31,7 @@
 ## Logistic regression on 2D data
 
 ![image6](images/logis2d.PNG)
+
+## Softmax regression on 2D data
+
+![image7](images/softmax.PNG)
